@@ -1,0 +1,283 @@
+<style>
+    div {
+        direction: rtl;
+    }
+    
+    .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #ff9900;
+        border-bottom: 16px solid #ff9900;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+    }
+    
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    
+    .card {
+        float: right;
+        width: 14.2%;
+        padding: 1%;
+        margin-bottom: 2rem;
+        border: 0;
+        opacity: 0.85;
+        cursor: pointer;
+    }
+    
+    .card {
+        position: relative;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        background-color: #fff;
+        border: 2px solid rgba(0, 0, 0, .4);
+        border-radius: 2.25rem;
+    }
+    
+    .album {
+        min-height: 50rem;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        background-color: #f7f7f7;
+    }
+</style>
+<div ng-controller="calendar">
+    <!-- start work-page -->
+    <div class="loaderbg" id="loading" style="display:none;">
+        <div class="loader" style="position:fixed;left:45%;top:45%;" ></div>
+    </div>
+    
+    <!--
+        <div style="width: 100%;
+        background-color: #fff;
+    opacity: 0.85;
+    padding: 20px;box-shadow:0 0 15px black;    float: right;">
+-->
+    <!--                       <div class="title"> الأجـنـدة </div>-->
+    <!--
+            <datepicker date-format="MM">
+                <input ng-model="date"  datepicker-popup="MM/yyyy" type="text" style="box-shadow:0 0 15px black;" placeholder=" من فضلك أختر التاريخ" ng-click="clear()" ng-change="myDate(date)" /> <span class="glyphicon glyphicon-calendar"></span> </datepicker>
+            
+            
+-->
+    <!-- -->
+    <!--  -->
+    <div ng-controller="KitchenSinkCtrl as vm">
+        <div class="title"> الأجـنـدة </div>
+        <h2 class="text-center">{{ vm.calendarTitle }}</h2>
+        <div class="row" style="padding-left:0;padding-right:0;">
+
+            
+            <!--
+    <div class="col-md-6 text-center">
+      <div class="btn-group">
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'year'" ng-click="vm.cellIsOpen = false">Year</label>
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'month'" ng-click="vm.cellIsOpen = false">Month</label>
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'week'" ng-click="vm.cellIsOpen = false">Week</label>
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'day'" ng-click="vm.cellIsOpen = false">Day</label>
+      </div>
+    </div> font-size: x-large;
+-->
+            <div class="col-md-4 text-center addedit-buttons formobile"> <!-- div2 -->
+                <button type="button" class="btn btn-success" ng-click="add()" style="">أضـافه قضيـة <span class="glyphicon glyphicon-plus"></span></button>
+                <!-- <button type="button" class="btn btn-primary" ng-click="report_today()" style=""> تقرير باليوم <span class="glyphicon glyphicon-file"></span></button> -->
+                <button type="button" class="btn btn-primary" ng-click="reports0()" style=""> التقارير <span class="	glyphicon glyphicon-list-alt"></span></button>
+            </div>
+
+            <div class="col-md-4 text-center formobile"> <!-- div1 -->
+                <div class="btn-group">
+                    <button class="btn btn-primary" mwl-date-modifier date="vm.viewDate" decrement="vm.calendarView" ng-click="lastm()"> الشهر السابق </button>
+                    <button class="btn btn-default" mwl-date-modifier date="vm.viewDate" set-to-today ng-click="vm.cellIsOpen = false"> اليوم </button>
+                    <button class="btn btn-primary" mwl-date-modifier date="vm.viewDate" increment="vm.calendarView" ng-click="nextm()"> الشهر التالي </button>
+
+                </div>
+            </div>
+
+
+            <div id="chosearea0" class="col-md-4 text-center formobile"> <!-- div3 -->
+                <div id="btn_areaonly" class="btn-group">
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{ area550055 }} </button>
+                    <div class="dropdown-menu"> <a class="dropdown-item" ng-click="selectall()"> الكل </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(1)"> الدقهلية</a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(2)" value="2">مركزي </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(3)">الغربية </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(4)">دمياط </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(5)">بورسعيد </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(6)">الجيزة </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(7)">بنى سويف </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(8)">السويس </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(9)">الاسكندرية </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(10)">سوهاج </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(11)">شمال سيناء </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(12)">البحيرة </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(13)">جنوب سيناء </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(14)">الشرقية </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(15)">اسوان </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(16)">مرسى مطروح </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(17)">الوادى الجديد </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(18)">المنيا </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(19)">الاسماعيلية </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(20)">القليوبية </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(21)">قنا </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(22)">كفر الشيخ </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(23)">البحر الاحمر </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(24)">الاقصر </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(25)">المنوفية </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item" ng-click="filterareaclick(26)">الفيوم </a> </div>
+                </div>
+                <!-- -->
+                <div id="choselowyer0" style="display:none;" class="btn-group">
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{ area550055222 }} </button>
+                    <div class="dropdown-menu"> <a class="dropdown-item" ng-repeat="q in usersfromarea" ng-click="userareaissue(q.uid,q.u_firstname)"> {{ q.u_firstname }}</a> </div>
+                </div>
+                <!-- -->
+                <br> <img src="images/mezan111.jpg" style="max-width: 100px;height: 89px;" /> </div>
+        </div>
+        <!-- -->
+        <br>
+        <mwl-calendar events="vm.events" view="vm.calendarView" view-title="vm.calendarTitle" view-date="vm.viewDate" on-event-click="vm.eventClicked(calendarEvent)" on-event-times-changed="vm.eventTimesChanged(calendarEvent,calendarNewEventStart); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd" cell-is-open="vm.cellIsOpen" day-view-start="06:00" day-view-end="22:59" day-view-split="30" cell-modifier="vm.modifyCell(calendarCell)" cell-auto-open-disabled="true" on-timespan-click="vm.timespanClicked(calendarDate, calendarCell)" on-view-change-click="false"> </mwl-calendar>
+        <br>
+        <br>
+        <br>
+        <!-- -->
+        
+        <div class="issues_listing_bg" style="display:none;">
+        <p class="closebtn" ng-click="closebtn()"> X </p>
+       
+        
+        <div id="paging" style="position: absolute;left: 45%;">
+                <button class="btn btn-primary" ng-click="currentPage=currentPage-1"> السابق </button>
+                <button class="btn btn-primary" ng-click="currentPage=currentPage+1"> التالي </button>
+                <!-- <button ng-disabled="currentPage >= getData().length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                    ss
+                </button> -->
+
+                <!-- <pagination total-items="totalItems" ng-model="currentPage"
+          max-size="5" boundary-links="true"
+          items-per-page="numPerPage" class="pagination-sm">
+        </pagination> -->
+        </div>
+        <div class="issues_listing">
+        
+        
+        
+        <div id="issues" class="issue_item s" ng-show="bb" ng-repeat="x in data | filter : paginate" ng-click="open_issue(x.Discount_Name,x.Discount_Position,x.circle,x.claim_no,x.court,x.issue_Notes,x.issue_decision_t,x.last_session,x.last_session_reason,x.next_session,x.subject,x.u_area_no,x.u_id,x.issue_id,x.u_firstname,x.area_name,x.court_type,x.mokem_el_issue)">
+            <center>
+                <div class="casetitle">قضية رقم 
+                    <div class="caseno">{{ x.claim_no }}</div>
+                </div>
+                    
+                <img src="images/Balance.png" style="width: 70px;
+    max-width: 70px;" />
+                
+                <table>
+                    <tr>
+                        <td>محكمة</td>
+                        <td class="issue_data">{{ x.court }}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>دائرة</td>
+                        <td class="issue_data">{{ x.circle }}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>اسم الخصم </td>
+                        <td class="issue_data">{{ x.Discount_Name }}</td>
+                    </tr>
+                    
+                </table>
+
+            </center>
+        </div>
+        <div id="issues2" style="" class="issue_item s" ng-show="bb" ng-repeat="x in data2 | filter : paginate" ng-click="open_issue(x.Discount_Name,x.Discount_Position,x.circle,x.claim_no,x.court,x.issue_Notes,x.issue_decision_t,x.last_session,x.last_session_reason,x.next_session,x.subject,x.u_area_no,x.u_id,x.issue_id,x.u_firstname,x.area_name,x.court_type,x.mokem_el_issue)">
+            <center>
+                                <span class="note">مؤجلة</span>
+                
+                <div class="casetitle">قضية رقم
+                    <div class="caseno">{{ x.claim_no }}</div>
+                </div>
+                
+                <img src="images/Balance.png" style="width: 70px;
+    max-width: 70px;" />
+                <table>
+                    <tr>
+                        <td>محكمة</td>
+                        <td class="issue_data">{{ x.court }}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>دائرة</td>
+                        <td class="issue_data">{{ x.circle }}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>اسم الخصم </td>
+                        <td class="issue_data">{{ x.Discount_Name }}</td>
+                    </tr>
+                    
+                </table>
+            </center>
+        </div>
+        
+        </div> 
+
+     
+
+    </div>
+        
+        <div id="popupdrag" style="display: none;
+    position: fixed;
+    background-color: #9e9e9e;
+    z-index: 99;
+    height: 250px;
+    width: 40%;
+    top: 30%;
+    right: 35%;">
+            <center>
+                <table class="table">
+                    <p class="closebtn" style="margin: 5px;" ng-click="closeit()"> X </p>
+                    <p class="title"> نقل قضية </p>
+                    <p> من فضلك ادخل سبب تأجيل القضية وأضغط موافق </p>
+                    <form method="post" ng-submit="dodrag00(reason)">
+                        <!-- -->
+                        <div class="form-group">
+                            <label> سبب التأجيل</label>
+                            <textarea id="7" type="text" class="form-control" name="last_session_reason" placeholder="ادخل سبب التأجيل" ng-model="reason"></textarea>
+                        </div>
+                        <!-- -->
+                        <br>
+                        <input type="submit" ng-click="dodrag00(reason)" class="btn btn-primary" value="موافق" style="font-size: x-large;"> </form>
+                </table>
+            </center>
+        </div>
+    </div>
+    <!-- --------------------------- -->
+    <!-- -->
+    <!-- -->
+</div>
+<!---end-mfp ---->

@@ -1,0 +1,440 @@
+<div ng-controller="home">
+    <!-- -->
+    <div class="loaderbg" id="loading" style="display:none;">
+        <div class="loader" style="position:fixed;left:45%;top:45%;" ></div>
+    </div>
+    <!-- -->
+
+        <div class="title"> لوحة التحكم </div>
+
+        <div style="direction: rtl;">
+        <input type="submit" ng-click="addmohamy()" class="btn btn-primary" value="اضافة محامي" style="font-size: x-large;"> </form>
+
+        <input type="submit" ng-click="find()" class="btn btn-primary" value="البحث عن محامي" style="font-size: x-large;"> </form>
+
+        <input type="submit" ng-click="topics()" class="btn btn-primary" value="مواضيع الدعاوي" style="font-size: x-large;"> </form>
+
+        <input type="submit" ng-click="findalluser11()" class="btn btn-primary" value="عرض جميع المستخدمين" style="font-size: x-large;"> </form>
+
+        
+        </div>
+
+        <div id="popadd" style="display: none;
+    position: fixed;
+    background-color: #9e9e9e;
+    z-index: 99;
+    height: 550px;
+    width: 75%;
+    top: 10%;
+    right: 15%;
+    overflow: scroll;
+    border-style: solid;
+    border-width: 5px;">
+    <!-- ng-submit="add(user,pass,areainsert,fn,ln,phone)" -->
+            <center>
+                <table class="table">
+                    <p class="closebtn" style="margin: 5px;" ng-click="closeit2()"> X </p>
+                    <p class="title"> اضافة محامي </p>
+                    <br> 
+                   <form method="post">
+                        <!-- -->
+                        <div class="form-group">
+                            <label>  اسم المستخدم</label>
+                        <input id="1" type="text" class="form-control" name="issue_Notes" value="" placeholder="اسم المستخدم " ng-model="user">
+                        <div class="clear"></div>
+                        </div>
+                        <!-- -->
+                        <br>
+                        <!-- -->
+                        <div class="form-group">
+                            <label> كلمة المرور</label>
+                        <input id="2" type="text" class="form-control" name="issue_Notes" value="" placeholder=" كلمة المرور " ng-model="pass">
+                        <div class="clear"></div>
+                         </div>
+                        <!-- -->
+                        <br>
+                        <!-- -->
+                        <div class="form-group">
+                            <label> المنطقة</label>
+                            <br>
+                        <select id="areainsert" ng-model="areainsert" style="width: 200px;" >
+                            <option value="2">مركزي</option>
+                            <option value="1">الدقهلية</option>
+                            <option value="3">الغربية</option>
+                            <option value="4">دمياط</option>
+                            <option value="5">بورسعيد</option>
+                            <option value="6">الجيزة</option>
+                            <option value="7">بني سويف</option>
+                            <option value="8">السويس</option>
+                            <option value="9">الاسكندرية</option>
+                            <option value="10">سوهاج</option>
+                            <option value="11">شمال سيناء</option>
+                            <option value="12">البحيرة</option>
+                            <option value="13">جنوب سيناء</option>
+                            <option value="14">الشرقية</option>
+                            <option value="15">اسوان</option>
+                            <option value="16">مرسى مطروح</option>
+                            <option value="17">الوادي الجديد</option>
+                            <option value="18">المنيا</option>
+                            <option value="19">الاسماعيلية</option>
+                            <option value="20">القليوبية</option>
+                            <option value="21">قنا</option>
+                            <option value="22">كفر الشيخ</option>
+                            <option value="23">البحر الاحمر</option>
+                            <option value="24">الاقصر</option>
+                            <option value="25">المنوفية</option>
+                            <option value="26">الفيوم</option>
+                            <option value="27">أسيوط</option>
+                        </select>
+                        <div class="clear"></div>
+                        </div>
+                        <!-- -->
+                        <div class="form-group">
+                            <label> الصلاحية</label>
+                            <br>
+                        <select id="deflevel" ng-model="deflevel" style="width: 200px;" >
+                            <option value="1">مدير عام</option>
+                            <option value="2">مدير منطقة</option>
+                            <option value="3">محامي</option>
+                        </select>
+                        <div class="clear"></div>
+                        </div>
+                        <!-- -->
+                        <br>
+                        <!-- -->
+                        <div class="form-group">
+                            <label> اسم المحامي الاول</label>
+                          <input id="4" type="text" class="form-control" name="issue_Notes" value="" placeholder=" الاسم الاول" ng-model="fn">
+                         <div class="clear"></div>
+                        </div>
+                        <!-- -->
+                        <br>
+                        <!-- -->
+                        <div class="form-group">
+                            <label> اسم المحامي الاخير</label>
+                         <input id="5" type="text" class="form-control" name="issue_Notes" value="" placeholder="الاسم الاخير" ng-model="ln">
+                          <div class="clear"></div>
+                            </div>
+                        <!-- -->
+                        <br>
+                        <!-- -->
+                        <div class="form-group">
+                            <label> رقم الهاتف</label>
+                        <input id="6" type="text" class="form-control" name="issue_Notes" value="" placeholder="رقم الهاتف" ng-model="phone">
+                        <div class="clear"></div>
+                        </div>
+                        <!-- -->
+                        <br>
+                        <input type="submit" ng-click="add(user,pass,areainsert,fn,ln,phone,deflevel)" class="btn btn-primary" value="اضافة المحامي" style="font-size: x-large;"> </form>
+                        <p id="ufinded" style="display:none;">  تم تعديل المستخدم بنجاح </p>
+
+                            <br>
+
+                            <div class="loaderbg" id="loading-add" style="display:none;">
+                                    <div class="loader" style="position:fixed;left:45%;top:45%;" ></div>
+                                </div>
+                            
+                        <!-- <p id="loading-add" style="display:none;"><img src="./images/8d88ece3551fb441841221d48556b13c9f96d43c_hq.gif" /></p> -->
+                </table>
+            </center>
+        </div>
+
+
+        <!-- -->
+        <!-- -->
+
+
+        <div id="poptopics" style="display: none;
+    position: fixed;
+    background-color: #9e9e9e;
+    z-index: 99;
+    height: 550px;
+    width: 75%;
+    top: 10%;
+    right: 15%;
+    overflow: scroll;
+    border-style: solid;
+    border-width: 5px;">
+    <!-- ng-submit="add(user,pass,areainsert,fn,ln,phone)" -->
+            <center>
+                <table class="table">
+                    <p class="closebtn" style="margin: 5px;" ng-click="closeit3()"> X </p>
+                    <p class="title"> مواضيع الدعاوي </p>
+                    <br> 
+                   <form method="post">
+                        <!-- -->
+                        <div class="form-group">
+                            <label>  موضوع الدعوي</label>
+                        <input id="1" type="text" class="form-control" name="issue_Notes" value="" placeholder="موضوع الدعوي" ng-model="topic">
+                        <div class="clear"></div>
+                        </div>
+
+                        <!-- -->
+                        <br>
+                        <input type="submit" ng-click="addtopic(topic)" class="btn btn-primary" value="اضافة موضوع دعوي" style="font-size: x-large;"> </form>
+                        <p id="ufinded" style="display:none;">  تم اضافة بنجاح </p>
+
+                            <br>
+
+                            <div class="loaderbg" id="loading-add" style="display:none;">
+                                    <div class="loader" style="position:fixed;left:45%;top:45%;" ></div>
+                                </div>
+                            <hr>
+                            <br>
+                            <!-- -->
+                            <div class="form-group">
+                                <label> موضوع الدعوى </label>
+                                <br>
+                                <select ng-model="subject" ng-options="z.topic for z in topics" style="width: 200px;" >
+                                   
+                                 </select>
+                                <div class="clear"></div>
+
+                            </div>
+                            <input type="submit" ng-click="deltopic(subject.topic_id)" class="btn btn-primary" value="حذف موضوع الدعوي المحدد" style="font-size: x-large;"> </form>
+
+                        <!-- <p id="loading-add" style="display:none;"><img src="./images/8d88ece3551fb441841221d48556b13c9f96d43c_hq.gif" /></p> -->
+                </table>
+            </center>
+        </div>
+
+        <!-- -->
+        <!-- -->
+
+
+        <!-- -->
+        <!-- -->
+        <div id="popfind" style="display: none;
+    position: fixed;
+    background-color: #9e9e9e;
+    z-index: 99;
+    height: 550px;
+    width: 75%;
+    top: 10%;
+    right: 15%;
+    overflow: scroll;
+    border-style: solid;
+    border-width: 5px;">
+    <!-- ng-submit="add(user,pass,areainsert,fn,ln,phone)" -->
+            <center>
+                <table class="table">
+                    <p class="closebtn" style="margin: 5px;" ng-click="closeit1()"> X </p>
+                    <p class="title"> البحث عن محامي </p>
+                    <br> 
+                    <input type="text" class="form-control" name="find_user" value="" placeholder="اسم المستخدم" ng-model="s1">
+
+                    <button type="button" ng-click="search1(s1)" class="btn btn-primary" > بحث بالاسم <span class="glyphicon glyphicon-share"></span> </button>
+                    <br>
+                    ---
+                    <br>
+                    <input type="text" class="form-control" name="find_user2" value="" placeholder="رقم الهاتف" ng-model="s2">
+
+                    <button type="button" ng-click="search2(s2)" class="btn btn-primary" > بحث بالهاتف <span class="glyphicon glyphicon-share"></span> </button>
+                    <hr>
+                    <hr>
+                   <form method="post">
+                        <!-- -->
+                        <div class="form-group">
+                            <label>  اسم المستخدم</label>
+                        <input id="1" type="text" class="form-control" name="issue_Notes" value="" placeholder="اسم المستخدم " ng-model="user">
+                        <div class="clear"></div>
+                        </div>
+                        <!-- -->
+                        <br>
+                        <!-- -->
+                        <div class="form-group">
+                            <label> كلمة المرور</label>
+                        <input id="2" type="text" class="form-control" name="issue_Notes" value="" placeholder=" كلمة المرور " ng-model="pass">
+                        <div class="clear"></div>
+                         </div>
+                        <!-- -->
+                        <br>
+                        <!-- -->
+                        <div class="form-group">
+                            <label> المنطقة</label>
+                            <br>
+                            <p> {{ areainsert0 }} </p>
+
+                        <select ng-model="areainsert" style="width: 200px;" >
+                            <option value="1">مركزي</option>
+                            <option value="2">الدقهلية</option>
+                            <option value="3">الغربية</option>
+                            <option value="4">دمياط</option>
+                            <option value="5">بورسعيد</option>
+                            <option value="6">الجيزة</option>
+                            <option value="7">بني سويف</option>
+                            <option value="8">السويس</option>
+                            <option value="9">الاسكندرية</option>
+                            <option value="10">سوهاج</option>
+                            <option value="11">شمال سيناء</option>
+                            <option value="12">البحيرة</option>
+                            <option value="13">جنوب سيناء</option>
+                            <option value="14">الشرقية</option>
+                            <option value="15">اسوان</option>
+                            <option value="16">مرسى مطروح</option>
+                            <option value="17">الوادي الجديد</option>
+                            <option value="18">المنيا</option>
+                            <option value="19">الاسماعيلية</option>
+                            <option value="20">القليوبية</option>
+                            <option value="21">قنا</option>
+                            <option value="22">كفر الشيخ</option>
+                            <option value="23">البحر الاحمر</option>
+                            <option value="24">الاقصر</option>
+                            <option value="25">المنوفية</option>
+                            <option value="26">الفيوم</option>
+                            <option value="27">أسيوط</option>
+                        </select>
+                        <div class="clear"></div>
+                        </div>
+                        <!-- -->
+                        <div class="form-group">
+                            <label> الصلاحية</label>
+                            <br>
+                            <p> {{ deflevel0 }} </p>
+
+                        <select ng-model="deflevel" style="width: 200px;" >
+                            <option value="1">مدير عام</option>
+                            <option value="2">مدير منطقة</option>
+                            <option value="3">محامي</option>
+                        </select>
+                        <div class="clear"></div>
+                        </div>
+                        <!-- -->
+                        <br>
+                        <!-- -->
+                        <div class="form-group">
+                            <label> اسم المحامي الاول</label>
+                          <input id="4" type="text" class="form-control" name="issue_Notes" value="" placeholder=" الاسم الاول" ng-model="fn">
+                         <div class="clear"></div>
+                        </div>
+                        <!-- -->
+                        <br>
+                        <!-- -->
+                        <div class="form-group">
+                            <label> اسم المحامي الاخير</label>
+                         <input id="5" type="text" class="form-control" name="issue_Notes" value="" placeholder="الاسم الاخير" ng-model="ln">
+                          <div class="clear"></div>
+                            </div>
+                        <!-- -->
+                        <br>
+                        <!-- -->
+                        <div class="form-group">
+                            <label> رقم الهاتف</label>
+                        <input id="6" type="text" class="form-control" name="issue_Notes" value="" placeholder="رقم الهاتف" ng-model="phone">
+                        <div class="clear"></div>
+                        </div>
+                        <!-- -->
+                        <br>
+                        <input type="submit" ng-click="edit(user,pass,areainsert,fn,ln,phone,deflevel)" class="btn btn-primary" value="تعديل البيانات" style="font-size: x-large;"> </form>
+                        <p id="uadded" style="display:none;">  تم تعديل المستخدم بنجاح </p>
+
+                            <br>
+
+                            <div class="loaderbg" id="loading-find" style="display:none;">
+                                    <div class="loader" style="position:fixed;left:45%;top:45%;" ></div>
+                                </div>
+                            
+                        <!-- <p id="loading-add" style="display:none;"><img src="./images/8d88ece3551fb441841221d48556b13c9f96d43c_hq.gif" /></p> -->
+                </table>
+            </center>
+        </div>
+        <!-- -->
+
+
+
+        <div id="findallusersdiv" style="display:none;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>م</td>
+                        <td>الاسم</td>
+                        <td>المستخدم</td>
+                        <td>المستوي</td>
+                        <td>المنطقة</td>
+                        <td>حذف</td>
+                    </tr>
+                </thead>
+                <tr ng-repeat="a in as">
+                    <td>{{a.uid}}</td>
+                    <td>{{a.u_firstname}}</td>
+                    <td>{{a.username}}</td>
+                    <td>{{a.u_level}}</td>
+                    <td>{{a.area_name}}</td>
+                    <td> <input type="submit" ng-click="deluser0($index,a.uid,a.username)" class="btn btn-primary" value="حذف" style="font-size: x-large;"> </form> </td>
+                </tr>
+
+            </table>
+        </div>
+
+
+
+        <!-- -->
+        <div id="popmove" style="display: none;
+        position: fixed;
+        background-color: #9e9e9e;
+        z-index: 99;
+        height: 350px;
+        width: 75%;
+        top: 10%;
+        right: 15%;
+        overflow: scroll;
+        border-style: solid;
+        border-width: 5px;">
+    <p class="closebtn" style="margin: 5px;" ng-click="closeit4()"> X </p>
+    <p class="title"> عفوا يحتوي هذا المستخدم علي قضايا يجب نقلها اولاً قبل الحذف </p>
+    <p class="title"> نقل قضايا المحامي - {{ UserTempDel }} </p>
+    <center>
+    <div id="q1" >
+        <hr>
+        <h3> نقل القضية </h3>
+        <!-- -->
+        <div id="areainsert" class="form-group">
+            <label> أختر المنطقة </label>
+            <br>
+            <select ng-model="mohafza" ng-change="motzerla(mohafza)">
+                <option value="1">مركزي</option>
+                <option value="2">الدقهلية</option>
+                <option value="3">الغربية</option>
+                <option value="4">دمياط</option>
+                <option value="5">بورسعيد</option>
+                <option value="6">الجيزة</option>
+                <option value="7">بني سويف</option>
+                <option value="8">السويس</option>
+                <option value="9">الاسكندرية</option>
+                <option value="10">سوهاج</option>
+                <option value="11">شمال سيناء</option>
+                <option value="12">البحيرة</option>
+                <option value="13">جنوب سيناء</option>
+                <option value="14">الشرقية</option>
+                <option value="15">اسوان</option>
+                <option value="16">مرسى مطروح</option>
+                <option value="17">الوادي الجديد</option>
+                <option value="18">المنيا</option>
+                <option value="19">الاسماعيلية</option>
+                <option value="20">القليوبية</option>
+                <option value="21">قنا</option>
+                <option value="22">كفر الشيخ"</option>
+                <option value="23">البحر الاحمر</option>
+                <option value="24">الاقصر</option>
+                <option value="25">المنوفية</option>
+                <option value="26">الفيوم</option>
+                <option value="27">أسيوط</option>
+            </select>
+            <div class="clear"></div>
+        </div>
+        <!-- -->
+        <br>
+        <!-- -->
+        <div id="choselowyer0"  class="btn-group">
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{ area550055222 }} </button>
+            <div class="dropdown-menu"> <a class="dropdown-item" ng-repeat="q in usersfromarea" ng-model="q.uid" ng-click="movedel(mohafza,q.uid)"> {{ q.u_firstname }} </a> </div>
+        </div>
+
+        <div class="loaderbg" id="loading" style="display:none;">
+            <div class="loader" style="position:fixed;left:45%;top:45%;" ></div>
+        </div>
+        
+    </div>
+</center>
+        <!-- -->
+</div>

@@ -1,0 +1,319 @@
+<style>
+    div {
+        direction: rtl;
+    }
+    
+    .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #ff9900;
+        border-bottom: 16px solid #ff9900;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+    }
+    
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+<div ng-controller="issue_edit">
+    <!-- start work-page -->
+    <!-- -->
+    <center>
+        <section style="">
+            <div class="title"> تعديل القضية </div>
+            <div class="loader" id="loading" style="display:none;"></div>
+            <form method="post" ng-submit="doEdit(court,circle,claim_no,Discount_Name,Discount_Position,subject,lastdate,last_session_reason,nextdate,issue_decision_t,issue_Notes,ctype,mokem_el_issue,issue_status ,judge ,judge_text ,judge_action ,mostanef1 ,mostanef2 ,taen1 ,taen2 ,elmostaashkel1,elmostaashkel2)">
+                <div class="col-sm-2 col-md-4 text-right"> <img src="images/testt.jpg" style="width:75%;height: 320px;" /> 
+                
+                <div id="q1" style="display:none;">
+                <hr>
+                <h3> نقل القضية </h3>
+                <!-- -->
+                <div id="areainsert" class="form-group">
+                    <label> أختر المنطقة </label>
+                    <br>
+                    <select ng-model="mohafza" ng-change="motzerla(mohafza)">
+                        <option value="1">مركزي</option>
+                        <option value="2">الدقهلية</option>
+                        <option value="3">الغربية</option>
+                        <option value="4">دمياط</option>
+                        <option value="5">بورسعيد</option>
+                        <option value="6">الجيزة</option>
+                        <option value="7">بني سويف</option>
+                        <option value="8">السويس</option>
+                        <option value="9">الاسكندرية</option>
+                        <option value="10">سوهاج</option>
+                        <option value="11">شمال سيناء"</option>
+                        <option value="12">البحيرة</option>
+                        <option value="13">جنوب سيناء</option>
+                        <option value="14">الشرقية</option>
+                        <option value="15">اسوان</option>
+                        <option value="16">مرسى مطروح</option>
+                        <option value="17">الوادي الجديد</option>
+                        <option value="18">المنيا</option>
+                        <option value="19">الاسماعيلية</option>
+                        <option value="20">القليوبية</option>
+                        <option value="21">قنا</option>
+                        <option value="22">كفر الشيخ"</option>
+                        <option value="23">البحر الاحمر</option>
+                        <option value="24">الاقصر</option>
+                        <option value="25">المنوفية</option>
+                        <option value="26">الفيوم</option>
+                        <option value="27">أسيوط</option>
+                    </select>
+                    <div class="clear"></div>
+                </div>
+                <!-- -->
+                <br>
+                <!-- -->
+                <div id="choselowyer0" style="" class="btn-group">
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{ area550055222 }} </button>
+                    <div class="dropdown-menu"> <a class="dropdown-item" ng-repeat="q in usersfromarea" ng-model="q.uid" ng-click="moveissue(mohafza,q.uid,q.u_firstname)"> {{ q.u_firstname }} </a> </div>
+                </div>
+                <!-- -->
+                <br>
+
+                <!-- <button type="button" ng-click="moveissue(mohafza,q.uid)" class="btn btn-primary" > نقل <span class="glyphicon glyphicon-share"></span> </button> -->
+
+            </div>
+                <!-- -->
+
+                <div id="q2" style="display:none;">
+                    <hr>
+                    <h3> نقل القضية </h3>
+                    <br>
+                    <!-- -->
+                    <div id="choselowyer0" style="" class="btn-group">
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{ area550055222 }} </button>
+                        <div class="dropdown-menu"> <a class="dropdown-item" ng-repeat="q in usersfromarea" ng-model="q.uid" ng-click="moveissue2(q.uid,q.u_firstname)"> {{ q.u_firstname }} </a> </div>
+                    </div>
+                    <!-- -->
+                    <br>
+    
+                    <!-- <button type="button" ng-click="moveissue2(q.uid,,q.u_firstname)" class="btn btn-primary" > نقل <span class="glyphicon glyphicon-share"></span> </button> -->
+    
+                </div>
+
+                <!-- -->
+
+                </div>
+                <div class="col-sm-5 col-md-4  text-right">
+                    <!-- -->
+                    <div>
+                        <label>الجلسه السابقه</label>
+                        <datepicker date-format="yyyy-MM-dd">
+                            <input ng-model="lastdate" type="text" placeholder=" ادخل تاريخ الجلسه السابقة" /> </datepicker>
+                    </div>
+                    <!-- -->
+                    <div class="form-group">
+                        <label> سبب التأجيل</label>
+                        <input id="7" type="text" class="form-control" style="font-size: 16px;" name="last_session_reason" placeholder="ادخل سبب التأجيل" ng-model="last_session_reason"> </div>
+                    <!-- -->
+                    <div>
+                        <label>القرار (الجلسة التالية)</label>
+                        <datepicker date-format="yyyy-MM-dd">
+                            <input ng-model="nextdate" type="text" placeholder=" ادخل تاريخ الجلسة التالية" /> </datepicker>
+                    </div>
+                    <!-- -->
+                    <!-- <div class="form-group">
+                        <label> القرار</label>
+                        <input id="8" type="text" class="form-control" name="issue_decision_t" placeholder="القرار " ng-model="issue_decision_t"> </div>
+                     -->
+                    <div class="form-group">
+                        <label> الملاحظات</label>
+                        <input id="9" type="text" class="form-control" name="issue_Notes" style="font-size: 16px;" placeholder=" الملاحظات " ng-model="issue_Notes"> </div>
+                    <!-- -->
+                    <!-- -->
+                    <div class="form-group">
+                        <label> مقيم الدعوي</label>
+                        <select ng-model="mokem_el_issue" style="width: 200px;">
+                            <option value="الازهر">الازهر</option>
+                            <option value="الخصم">الخصم</option>
+                        </select>
+                    </div>
+                    <!-- -->
+                    <!-- -->
+                    <div class="form-group">
+                        <label> موضوع الدعوى</label>
+                        <select ng-model="subject" style="width: 200px;">
+                            <option value="ضم مدة خدمة عسكرية">ضم مدة خدمة عسكرية</option>
+                            <option value="ضم مدة خدمة عامة">ضم مدة خدمة عامة</option>
+                            <option value="ضم مدة العمل التطوعي">ضم مدة العمل التطوعي</option>
+                            <option value="ضم مدة خبره علميه">ضم مدة خبرة علميه</option>
+                            <option value="ضم مدة خبرة عمليه">ضم مدة خبرة عمليه</option>
+                            <option value="جهود غير عادية">جهود غير عادية</option>
+                            <option value="حافز اثابة">حافز اثابة</option>
+                            <option value="حافز انشطه تربوية">حافز انشطه تربوية</option>
+                            <option value="حوفز">حوفز</option>
+                            <option value="مستحقات مالية">مستحقات مالية</option>
+                            <option value="بدل سفر">بدل سفر</option>
+                            <option value="المعاملة المالية">المعاملة المالية</option>
+                            <option value="العلاوات الخاصة للمبعوثين">العلاوات الخاصة للمبعوثين</option>
+                            <option value="استبعاد العلاوات من الضرائب">استبعاد العلاوات من الضرائب</option>
+                            <option value="قطع مفاجئ">قطع مفاجئ</option>
+                            <option value="تعويض">تعويض</option>
+                            <option value="استكمال بعثه">استكمال بعثه</option>
+                            <option value="تخطي في الاعارة">تخطي في الاعارة</option>
+                            <option value="تخطي في التعيين">تخطي في التعيين</option>
+                            <option value="تخطي في الترقية">تخطي في الترقية</option>
+                            <option value="رصيد اجازات">رصيد اجازات</option>
+                            <option value="بدل سكن مبعوثين">بدل سكن مبعوثين</option>
+                            <option value="عمالة منضمة">عمالة منضمة</option>
+                            <option value="غسيل كلوي">غسيل كلوي</option>
+                            <option value="فسخ تعاقد">فسخ تعاقد</option>
+                            <option value="حقوق تأمينيه">حقوق تأمينيه</option>
+                            <option value="سكن أداري">سكن أداري</option>
+                            <option value="مقاولات">مقاولات</option>
+                            <option value="امتناع عن تنفيذ حكم">امتناع عن تنفيذ حكم</option>
+                            <option value="اعادة تعيين">اعادة تعيين</option>
+                            <option value="تعديل مسمي وظيفي">تعديل مسمي وظيفي</option>
+                            <option value="استبعاد من التدريس">استبعاد من التدريس</option>
+                            <option value="ترقية">ترقية</option>
+                            <option value="تسويات بالمؤهل الأعلي">تسويات بالمؤهل الأعلي</option>
+                            <option value="اعادة تصحيح كراسات الاجابة">اعادة تصحيح كراسات الاجابة</option>
+                            <option value="تأديبي">تأديبي</option>
+                            <option value="نقل">نقل</option>
+                            <option value="ندب">ندب</option>
+                            <option value="تحويل طلبه">تحويل طلبه</option>
+                            <option value="قيد طلبة">قيد طلبة</option>
+                            <option value="طلبة">طلبة</option>
+                            <option value="علاوات خاصة عادية">علاوات خاصة عادية</option>
+                            <option value="مرتبات">مرتبات</option>
+                            <option value="انهاء خدمة">انهاء خدمة</option>
+                            <option value="بدل الاقامة">بدل الاقامة</option>
+                            <option value="بدل معلم واعتماد">بدل معلم واعتماد</option>
+                            <option value="تقارير الكفاية">تقارير الكفاية</option>
+                            <option value="علاوة تشجيعية">علاوة تشجيعية</option>
+                            <option value="حافز التميز">حافز التميز</option>
+                            <option value="اصابة عمل">اصابة عمل</option>
+                            <option value="تعديات">تعديات</option>
+                            <option value="جامعة الأزهر">جامعة الأزهر</option>
+                            <option value="مدني">مدني</option>
+                            <option value="اشكالات">اشكالات</option>
+                            <option value="بطلان">بطلان</option>
+                            <option value="عدم اعتداد">عدم اعتداد</option>
+                            <option value="التماس اعادة نظر">التماس اعادة نظر</option>
+                        </select>
+                    </div>
+                    <!-- -->
+
+                    <div class="form-group">
+                        <label>اسم المستانف</label>
+<input type="text" class="form-control" name="mostanef1" style="font-size: 16px;" placeholder="" ng-model="mostanef1"> </div>
+                    <!-- -->
+
+                    <div class="form-group">
+                        <label>المستانف ضده</label>
+<input type="text" class="form-control" name="mostanef2" style="font-size: 16px;" placeholder="" ng-model="mostanef2"> </div>
+                    <!-- -->
+
+
+                    <div class="form-group">
+                        <label>اسم الطاعن</label>
+<input type="text" class="form-control" name="taen1" style="font-size: 16px;" placeholder="" ng-model="taen1"> </div>
+                    <!-- -->
+
+                    <div class="form-group">
+                        <label>المطعون فيه</label>
+<input type="text" class="form-control" name="taen2" style="font-size: 16px;" placeholder="" ng-model="taen2"> </div>
+                    <!-- -->
+
+                    <div class="form-group">
+                        <label>اسم المستشكل</label>
+<input type="text" class="form-control" name="elmostaashkel1" style="font-size: 16px;" placeholder="" ng-model="elmostaashkel1"> </div>
+                    <!-- -->
+
+                    <div class="form-group">
+                        <label>المستشكل ضده</label>
+<input type="text" class="form-control" name="elmostaashkel2" style="font-size: 16px;" placeholder="" ng-model="elmostaashkel2"> </div>
+                    <!-- -->
+
+                </div>
+                <!-- -->
+                <!-- -->
+                <div class="col-sm-5 col-md-4  text-right">
+                    <div class="form-group">
+                        <label>اسم المحكمة</label>
+                        <input id="1" type="text" class="form-control" name="court" value="a" style="font-size: 16px;" placeholder="ادخل اسم المحكمة" ng-model="court"> </div>
+                    <!-- -->
+                    <div class="form-group">
+                        <label>اسم الدائرة</label>
+                        <input id="2" type="text" class="form-control" name="circle" style="font-size: 16px;" placeholder="ادخل اسم الدائرة" ng-model="circle"> </div>
+                    <!-- -->
+                    <div class="form-group">
+                        <label>رقم الدعوي </label>
+                        <input id="3" type="text" class="form-control" name="claim_no" style="font-size: 16px;"placeholder="ادخل رقم الدعوي" ng-model="claim_no"> </div>
+                    <!-- -->
+                    <div class="form-group">
+                        <label> أسم الخصم </label>
+                        <input id="4" type="text" class="form-control" name="Discount_Name" style="font-size: 16px;" placeholder="ادخل اسم الخصم" ng-model="Discount_Name"> </div>
+                    <!-- -->
+                    <div class="form-group">
+                        <label> صفة الخصم </label>
+                        <input id="5" type="text" class="form-control" name="Discount_Position" style="font-size: 16px;" placeholder="ادخل صفه الخصم" ng-model="Discount_Position"> </div>
+                    <!-- -->
+                    <div class="form-group">
+                        <label>نوع المحكمة</label>
+                        <input type="text" class="form-control" name="ctype" style="font-size: 16px;" placeholder="ادخل نوع المحكمة" ng-model="ctype"> </div>
+                    <!-- -->
+
+
+
+                    <div class="form-group">
+                        <label>حاله القضية</label>
+                        <input type="text" class="form-control" name="issue_status" style="font-size: 16px;" placeholder="" ng-model="issue_status"> </div>
+                    <!-- -->
+
+
+                    <div class="form-group">
+                        <label>الحكم</label>
+                        <input type="text" class="form-control" name="judge" style="font-size: 16px;" placeholder="" ng-model="judge"> </div>
+                    <!-- -->
+
+                    <div class="form-group">
+                        <label>منطوق الحكم</label>
+                        <input type="text" class="form-control" name="judge_text" style="font-size: 16px;" placeholder="" ng-model="judge_text"> </div>
+                    <!-- -->
+
+
+                    <div class="form-group">
+                        <label>التصرف النهائي للحكم</label>
+                        <input type="text" class="form-control" name="judge_action" style="font-size: 16px;" placeholder="" ng-model="judge_action"> </div>
+                    <!-- -->
+
+
+                </div>
+                <!-- -->
+                <br>
+                <input type="submit" class="btn btn-primary" value="تعديل" style="font-size: x-large;"> </form>
+        
+            <br>
+            <br>
+            <div id="added" class="btn-success" style="display:none;">
+                <p> تم تعديل البيانات بنجاح !</p>
+            </div>
+            <div id="wrong" class="btn-danger" style="display:none;">
+                <p> من فضلك تأكد من ادخال جميع البيانات</p>
+            </div>
+            
+        </section>
+    </center>
+    <!---end-mfp -->
+</div>

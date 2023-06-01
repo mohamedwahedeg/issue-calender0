@@ -1,0 +1,105 @@
+<style>
+    div {
+        direction: rtl;
+    }
+    
+    .card {
+        float: right;
+        width: 33.333%;
+        padding: .75rem;
+        margin-bottom: 2rem;
+        border: 0;
+        opacity: 0.85;
+    }
+    
+    .card {
+        position: relative;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, .125);
+        border-radius: .25rem;
+    }
+    
+    .album {
+        min-height: 50rem;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        background-color: #f7f7f7;
+    }
+    
+    .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #ff9900;
+        border-bottom: 16px solid #ff9900;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+    }
+    
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+<div ng-controller="home">
+    <!-- start work-page -->
+    <!-- <div class="loader" id="loading" style="display:none;"></div> -->
+    <center>
+<!--
+        <section style="max-width: 65%;background-color: #ffffff;padding: 20px;opacity: 0.9;float:right"> <img src="images/avataranonym.png" style="max-width: 100px;" />
+            <p> أهلا بـك {{ user.username }}</p>
+        </section>
+-->
+        <!-- -->
+        <section style="max-width: 100%;background-color: #ffffff;padding: 20px;opacity: 0.9;float:left;WIDTH: 100%;box-shadow:0 0 15px black;">
+            <h3>تذكير بقضايا اليوم</h3>
+            <br>
+            <!-- -->
+            <div class="">
+                <div class="loader" id="loading" style="display:none;"></div>
+                <!--
+        max-width: 85%;background-color: #ffffff;padding: 20px;opacity: 0.92;top: 101%;
+    position: absolute;
+-->
+                <div id="notoday" style="display:none;"> لايوجد قضايا لليوم </div>
+                <div id="issues" style="box-shadow:0 0 15px black;" class="card" ng-repeat="x in data" ng-click="open_issue(x.Discount_Name,x.Discount_Position,x.circle,x.claim_no,x.court,x.issue_Notes,x.issue_decision_t,x.issue_id,x.last_session,x.last_session_reason,x.next_session,x.subject,x.u_area_no,x.u_id,x.issue_id,x.u_firstname,x.area_name)">
+                    <center><img src="images/Balance.png" style="width: 70px;
+    max-width: 70px;" />
+                        <p class=""> رقم القضيه : {{ x.claim_no }}</p>
+                        <p class=""> دائرة : {{ x.circle }}</p>
+                        <p class=""> اسم الخصم : {{ x.Discount_Name }}</p>
+                    </center>
+                </div>
+            </div>
+            <br><br>
+                           <center> <button type="submit" ng-click="agenda()" class="btn btn-primary" style="font-size: x-large;position: absolute;bottom: 0;right: 45%;">   الاجـنـدة   <i class="glyphicon glyphicon-calendar"></i></button></center>
+
+
+            <!-- -->
+        </section>
+    </center>
+    <!---end-mfp ---->
+</div>

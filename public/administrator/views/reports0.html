@@ -1,0 +1,222 @@
+<style>
+    div {
+        direction: rtl;
+    }
+    
+    .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #ff9900;
+        border-bottom: 16px solid #ff9900;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+    }
+    
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    
+    .card {
+        float: right;
+        width: 14.2%;
+        padding: 1%;
+        margin-bottom: 2rem;
+        border: 0;
+        opacity: 0.85;
+        cursor: pointer;
+    }
+    
+    .card {
+        position: relative;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, .4);
+        border-radius: .25rem;
+    }
+    
+    .album {
+        min-height: 50rem;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        background-color: #f7f7f7;
+    }
+</style>
+<div ng-controller="reports0">
+    <!-- start work-page -->
+    <!-- -->
+    <center>
+        <section style="">
+            <div class="loader" id="loading" style="display:none;"></div>
+            <div class="title"> التقارير </div>
+            <br>
+            <div id="per1" style="display:none;">
+                <div id="per11" style="">
+                    <p class="text-primary"> تقارير كل القضايا</p>
+                    <table>
+                        <tr> أختر الفترة الزمنية </tr>
+                        <tr>
+                            <td> من</td>
+                            <td>
+                                <datepicker date-format="yyyy-MM-dd">
+                                    <input ng-model="from" type="text" placeholder=" اختر" /> </datepicker>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> الي</td>
+                            <td>
+                                <datepicker date-format="yyyy-MM-dd">
+                                    <input ng-model="to" type="text" placeholder=" اختر" /> </datepicker>
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="button" class="btn btn-primary" ng-click="submit1(from,to)" style=""> عرض <span class="glyphicon glyphicon-share"></span></button>
+                    <br>
+                    <hr>
+                    <div id="per12" style="">
+                        <p class="text-primary"> تقارير بالمنطة فقط</p>
+                        <!-- -->
+                        <table>
+                            <tr>
+                                <td> أختر المحافظة </td>
+                                <td>
+                                    <select ng-model="mohafza" ng-change="motzerla(mohafza)">
+                                        <option value="1">الدقهلية</option>
+                                        <option value="2">مركزي</option>
+                                        <option value="3">الغربية</option>
+                                        <option value="4">دمياط</option>
+                                        <option value="5">بورسعيد</option>
+                                        <option value="6">الجيزة</option>
+                                        <option value="7">بني سويف</option>
+                                        <option value="8">السويس</option>
+                                        <option value="9">الاسكندرية</option>
+                                        <option value="10">سوهاج</option>
+                                        <option value="11">شمال سيناء</option>
+                                        <option value="12">البحيرة</option>
+                                        <option value="13">جنوب سيناء</option>
+                                        <option value="14">الشرقية</option>
+                                        <option value="15">اسوان</option>
+                                        <option value="16">مرسى مطروح</option>
+                                        <option value="17">الوادي الجديد</option>
+                                        <option value="18">المنيا</option>
+                                        <option value="19">الاسماعيلية</option>
+                                        <option value="20">القليوبية</option>
+                                        <option value="21">قنا</option>
+                                        <option value="22">كفر الشيخ</option>
+                                        <option value="23">البحر الاحمر</option>
+                                        <option value="24">الاقصر</option>
+                                        <option value="25">المنوفية</option>
+                                        <option value="26">الفيوم</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <br>
+                        <button type="button" class="btn btn-primary" ng-click="submit11(mohafza,from,to)" style="">عرض للمنطقة <span class="glyphicon glyphicon-share"></span></button>
+                    </div>
+                    <br>
+                    <hr>
+                    <div id="per13" style="">
+                        <p class="text-primary"> تقارير بالمحامي</p>
+                         <div id="choselowyer0" style="" class="btn-group">
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{ holoholo }} </button>
+                    <div class="dropdown-menu"> <a class="dropdown-item" ng-repeat="q in usersfromarea" ng-click="submit13(q.uid,q.u_firstname,from,to)"> {{ q.u_firstname }}</a> </div>
+                </div>
+                <!-- -->
+                    </div>
+                </div>
+                <br>
+                <div id="wrong1" style="display:none;" class="text-danger">
+                    من فضلك تأكد من أدخال الفترة الزمنية بشكل صحيح !
+                </div>
+                <div id="wrong2" style="display:none;" class="text-danger">
+                    من فضلك أختر المنطقة !
+                </div>
+            </div>
+            <div id="per2" style="display:none;">
+                <p class="text-primary"> تقارير كل القضايا</p>
+                <table>
+                    <tr> أختر الفترة الزمنية </tr>
+                    <tr>
+                        <td> من</td>
+                        <td>
+                            <datepicker date-format="yyyy-MM-dd">
+                                <input ng-model="from" type="text" placeholder=" اختر" /> </datepicker>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> الي</td>
+                        <td>
+                            <datepicker date-format="yyyy-MM-dd">
+                                <input ng-model="to" type="text" placeholder=" اختر" /> </datepicker>
+                        </td>
+                    </tr>
+                </table>
+                <button type="button" class="btn btn-primary" ng-click="submit2(from,to)" style=""> عرض <span class="glyphicon glyphicon-share"></span></button>
+                <br>
+                <hr> 
+            
+                <p class="text-primary"> تقارير بالمحامي </p>
+                                <!-- -->
+                <div id="choselowyer0" style="" class="btn-group">
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{ holoholo }} </button>
+                    <div class="dropdown-menu"> <a class="dropdown-item" ng-repeat="q in usersfromarea" ng-click="submit13(q.uid,q.u_firstname,from,to)"> {{ q.u_firstname }}</a> </div>
+                </div>
+                <!-- -->
+                <br>
+                <div id="wrong01" style="display:none;" class="text-danger">
+                    من فضلك تأكد من أدخال الفترة الزمنية بشكل صحيح !
+                </div>
+            </div>
+            <div id="per3" style="display:none;">
+                <p style="title"> تقارير كل القضايا</p>
+                <table>
+                    <tr> أختر الفترة الزمنية </tr>
+                    <tr>
+                        <td> من</td>
+                        <td>
+                            <datepicker date-format="yyyy-MM-dd">
+                                <input ng-model="from" type="text" placeholder=" اختر" /> </datepicker>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> الي</td>
+                        <td>
+                            <datepicker date-format="yyyy-MM-dd">
+                                <input ng-model="to" type="text" placeholder=" اختر" /> </datepicker>
+                        </td>
+                    </tr>
+                </table>
+                <button type="button" class="btn btn-primary" ng-click="submit3(from,to)" style=""> عرض <span class="glyphicon glyphicon-share"></span></button>
+                <br>
+                <div id="wrong001" style="display:none;" class="text-danger">
+                    من فضلك تأكد من أدخال الفترة الزمنية بشكل صحيح !
+                </div>
+            </div>
+        </section>
+    </center>
+    <!---end-mfp ---->
+</div>

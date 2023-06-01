@@ -1,0 +1,203 @@
+<style>
+    div {
+        direction: rtl;
+    }
+    
+    .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #ff9900;
+        border-bottom: 16px solid #ff9900;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+    }
+    
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+<div ng-controller="issue_details">
+    <!-- start work-page -->
+    <!-- -->
+    <center>
+        <section style="">
+            <div class="loader" id="loading" style="display:none;"></div>
+            <div class="title"> تفاصيل القضية </div>
+            <div class="">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td style="font-size: x-large;">اسم المحكمة</td>
+                        <td>{{ issue.court }}</td>
+                        <td style="font-size: x-large;">اسم الدائرة</td>
+                        <td>{{ issue.circle }}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: x-large;">رقم الدعوي</td>
+                        <td>{{ issue.claim_no }}</td>
+                        <td style="font-size: x-large;">اسم الخصم</td>
+                        <td>{{ issue.Discount_Name }}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: x-large;">صفة الخصم</td>
+                        <td>{{ issue.Discount_Position }}</td>
+                        <td style="font-size: x-large;">الجلسة السابقة</td>
+                        <td>{{ issue.last_session }}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: x-large;">سبب التاجيل</td>
+                        <td>{{ issue.last_session_reason }}</td>
+                        <td style="font-size: x-large;">ملاحظات</td>
+                        <td>{{ issue.issue_Notes }}</td>
+                    </tr>
+                    
+                     <tr>
+                        <td style="font-size: x-large;"> القرار (الجلسة التالية)</td>
+                        <td>{{ issue.next_session }}</td>
+                        <td style="font-size: x-large;">موضوع الدعوى</td>
+                        <td>{{ issue.subject }}</td>
+                    </tr>
+                    
+                     <tr>
+                        <td style="font-size: x-large;">المنطقة</td>
+                        <td>{{ issue.area_name }}</td>
+                        <td style="font-size: x-large;">اسم المحامي</td>
+                        <td>{{ issue.u_firstname }}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td style="font-size: x-large;">نوع المحكمة</td>
+                        <td>{{ issue.court_type }}</td>
+                        <td style="font-size: x-large;">مقيم الدعوي</td>
+                        <td>{{ issue.mokem_el_issue }}</td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-size: x-large;">حاله القضية </td>
+                        <td>{{ issue.issue_status }}</td>
+                        <td style="font-size: x-large;">الحكم</td>
+                        <td>{{ issue.judge }}</td>
+                    </tr>
+
+
+                    <tr>
+                        <td style="font-size: x-large;"> منطوق الحكم</td>
+                        <td>{{ issue.judge_text }}</td>
+                        <td style="font-size: x-large;"> التصرف النهائي للحكم</td>
+                        <td>{{ issue.judge_action }}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: x-large;"> اسم المستانف</td>
+                        <td>{{ issue.mostanef1 }}</td>
+                        <td style="font-size: x-large;"> المستانف ضده</td>
+                        <td>{{ issue.mostanef2 }}</td>
+                    </tr>
+                    <tr>
+                        <td style="font-size: x-large;"> اسم الطاعن</td>
+                        <td>{{ issue.taen1 }}</td>
+                        <td style="font-size: x-large;"> المطعون فيه</td>
+                        <td>{{ issue.taen2 }}</td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-size: x-large;"> اسم المستشكل</td>
+                        <td>{{ issue.elmostaashkel1 }}</td>
+                        <td style="font-size: x-large;"> المستشكل ضده</td>
+                        <td>{{ issue.elmostaashkel2 }}</td>
+                    </tr>
+
+                </table>
+            </div>
+           
+            <div id="access1" style="display:none;">
+            <button type="button" class="btn btn-primary" ng-click="edit()" style="font-size: x-large;">تعديل بيانات القضيـة</button>
+            
+            <button type="button" class="btn btn-success" ng-click="addt2gel1()" style="font-size: x-large;">تأجيل القضية <span class="glyphicon glyphicon-plus"></span></button>
+            
+            <button type="button" class="btn" ng-click="deli()" style="font-size: x-large;"> حذف القضية <span class="glyphicon glyphicon-trash"></span></button>
+        </div>
+            <br><br>
+            <center>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <td>تاريخ سابق</td>
+                        <td>سبب التأجيل</td>
+                    </tr>
+                    <tr ng-repeat="v in his">
+                        <td>{{ v.last_session }}</td>
+                        <td>{{ v.last_session_reason }}</td>
+                    </tr>
+                    
+                </table>
+            </center>
+            <div id="popupdrag" style="display: none;
+    position: fixed;
+    background-color: #9e9e9e;
+    z-index: 99;
+    height: 250px;
+    width: 40%;
+    top: 27%;
+    right: 32%;">
+                <center>
+                    <table class="table">
+                        <p class="closebtn" style="margin: 5px;" ng-click="closeit()"> X </p>
+                        <p class="title"> نقل قضية </p>
+                        <form method="post" ng-submit="addt2gel2(date, reasson)">
+                            <!-- -->
+                            <div class="form-group">
+                                <label> أختر تاريخ الجلسة التالية </label>
+                                <datepicker date-format="yyyy-MM-dd">
+                                    <input ng-model="date" type="text" placeholder=" أختر تاريخ الجلسة التالية" /> </datepicker>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label> سبب التأجيل</label>
+                                <textarea style="width: 80%;" type="text" class="form-control" name="last_session_reason" placeholder="ادخل سبب التأجيل" ng-model="reasson"></textarea>
+                            </div>
+                            
+                            <br>
+                            <input type="submit" class="btn btn-primary" ng-click="addt2gel2(date, reasson)" value="موافق" style="font-size: x-large;"> </form>
+                    </table>
+                </center>
+            </div>
+            <!-- -- -->
+            <div id="delissue" style="display: none;
+    position: fixed;
+    background-color: #9e9e9e;
+    z-index: 99;
+    height: 250px;
+    width: 40%;
+    top: 27%;
+    right: 32%;">
+                <center>
+                    <table class="table">
+                        <p class="closebtn" style="margin: 5px;" ng-click="closeit2()"> X </p>
+                        <p class="title"> حذف القضية </p>
+                        <form method="post" ng-submit="addt2gel2(date, reasson)">
+                            <!-- -->
+                            <p>هل أنت متأكد انك تريد حذف هذه القضية</p>
+                            
+                            <br>
+                            <input type="submit" class="btn btn-primary" ng-click="del2()" value="حذف" style="font-size: x-large;"> </form>
+                    </table>
+                </center>
+            </div>
+        </section>
+    </center>
+    <!---end-mfp ---->
+</div>

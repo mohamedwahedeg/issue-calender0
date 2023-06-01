@@ -1,0 +1,80 @@
+<style>
+    div {
+        direction: rtl;
+    }
+    
+    .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #ff9900;
+        border-bottom: 16px solid #ff9900;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+    }
+    
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+<div ng-controller="user">
+    <!-- start work-page -->
+    <!-- -->
+    <center>
+        <section style="">
+            
+           <div class="title"> تعديل بياناتى </div>
+            <div class="loader" id="loading" style="display:none;"></div> 
+                
+            <form method="post" ng-submit="doEdit(fname,lname,email,phone)">
+                
+                                <div class="col-sm-6 col-xs-12 text-right">
+                <img src="images/3232ebec.png" style="width:75%;float: left;" />
+                </div>
+                
+                <div class="col-sm-6 col-xs-12  text-right">
+                <div class="form-group">
+                    <label>الاسم الاول</label>
+                    <input id="1" type="text" class="form-control" name="fname" placeholder="اسمك الاول" ng-model="fname"> </div>
+                <!-- -->
+                <div class="form-group">
+                    <label>الاسم الاخير</label>
+                    <input id="2" type="text" class="form-control" name="lname" placeholder="اسمك الثاني" ng-model="lname"> </div>
+                <!-- -->
+                <div class="form-group">
+                    <label>البريد الالكتروني </label>
+                    <input id="3" type="text" class="form-control" name="email" placeholder="بريدك الالكتروني" ng-model="email"> </div>
+                <!-- -->
+                <div class="form-group">
+                    <label> الهاتف المحمول </label>
+                    <input id="4" type="text" class="form-control" name="phone" placeholder="هاتفك المحمول" ng-model="phone"> </div>
+                </div>
+                <!-- -->
+
+                <input type="submit" class="btn btn-primary" value="تعديل" style="font-size: large;"> </form>
+
+            <div id="added" class="btn-success" style="display:none;">
+                <p> تم تعديل البيانات بنجاح !</p>
+            </div>
+            <div id="wrong" class="btn-danger"  style="display:none;">
+                <p> من فضلك تأكد من ادخال جميع البيانات</p>
+            </div>
+        </section>
+    </center>
+    <!---end-mfp ---->
+</div>

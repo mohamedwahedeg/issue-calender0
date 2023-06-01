@@ -1,0 +1,113 @@
+<style>
+    div {
+        direction: rtl;
+    }
+    
+    .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #ff9900;
+        border-bottom: 16px solid #ff9900;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+    }
+    
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    
+    
+    
+    .card {
+    float: right;
+    width: 14.2%;
+    padding: 1%;
+    margin-bottom: 2rem;
+    border: 0;
+    opacity: 0.85;
+        cursor: pointer;
+    }
+    
+    .card {
+        position: relative;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, .4);
+        border-radius: .25rem;
+    }
+    
+    .album {
+        min-height: 50rem;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        background-color: #f7f7f7;
+    }
+    
+</style>
+<div ng-controller="search_result">
+    <!-- start work-page -->
+    <!-- -->
+    <center>
+        <section style="">
+            <div class="loader" id="loading" style="display:none;"></div>
+            <div class="title"> نتائج البحث عن القضايا </div>
+            <br>
+                <!-- -->
+            <div id="issues" style="" class="issue_item s" ng-repeat="x in onj" ng-click="open_issue(x.Discount_Name,x.Discount_Position,x.circle,x.claim_no,x.court,x.issue_Notes,x.issue_decision_t,x.last_session,x.last_session_reason,x.next_session,x.subject,x.u_area_no,x.u_id,x.issue_id,x.u_firstname,x.area_name)">
+             <center>
+                
+                <div class="casetitle">قضية رقم
+                    <div class="caseno">{{ x.claim_no }}</div>
+                </div>
+                
+                <img src="images/Balance.png" style="width: 70px;
+    max-width: 70px;" />
+                <table>
+                    <tr>
+                        <td>محكمة</td>
+                        <td class="issue_data">{{ x.court }}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>دائرة</td>
+                        <td class="issue_data">{{ x.circle }}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>اسم الخصم </td>
+                        <td class="issue_data">{{ x.Discount_Name }}</td>
+                    </tr>
+                    
+                </table>
+            </center>
+        </div>
+            <!-- -->
+            </div>
+        </section>
+    </center>
+    <!---end-mfp ---->
+</div>

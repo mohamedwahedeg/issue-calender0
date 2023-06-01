@@ -1,0 +1,96 @@
+<style>
+    div {
+        direction: rtl;
+    }
+    
+    .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #ff9900;
+        border-bottom: 16px solid #ff9900;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+    }
+    
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    
+    .card {
+        float: right;
+        width: 14.2%;
+        padding: 1%;
+        margin-bottom: 2rem;
+        border: 0;
+        opacity: 0.85;
+        cursor: pointer;
+    }
+    
+    .card {
+        position: relative;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, .4);
+        border-radius: .25rem;
+    }
+    
+    .album {
+        min-height: 50rem;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        background-color: #f7f7f7;
+    }
+</style>
+<div ng-controller="reports0">
+    <!-- start work-page -->
+    <!-- -->
+    <center>
+        <section>
+            <div class="loader" id="loading" style="display:none;"></div>
+            <div class="title"> احصائيات </div>
+            <br>
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;" scope="col">اسم المحامي</th>
+                        <th style="text-align: center;" scope="col"> المنطقة</th>
+                        <th style="text-align: center;" scope="col">عدد القضايا</th>
+                      </tr>
+                </thead>
+                <tbody>
+            <tr style="text-align: center;" ng-repeat="user in users0">
+                <td>{{user.u_firstname}}</td>
+                <td>{{user.area_name}}</td>
+                <td>{{user.NOIssues}}</td>
+                </tr>
+            </tbody>
+            </table>
+
+    </section>
+    </center>
+</div>

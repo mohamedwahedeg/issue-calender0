@@ -1,0 +1,9 @@
+module.exports = {
+	"database": "",
+	"port": process.env.PORT || 3001,
+	"secretKey": "112233",
+	"SqlDbUserName": "sa",
+	"SqlDbUserPass": "sa",
+	"SqlDbNAME": "azissue",
+	"SqlDbLocals": "localhost"
+}

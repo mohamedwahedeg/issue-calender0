@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ar" ng-controller="report_today">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>تقرير لقضايا اليوم</title>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0" />
+    <link href="report.css" rel="stylesheet" /> </head>
+
+<body leftmargin="0" topmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0" onload="">
+    <div id="document">
+        <div id="docx" class="WordSection1">
+            <div class="inner page">
+                <div class="header" class="clearfix">
+                    <div lang="AR-EG" class="" style="float: right;font-size:14px;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;الازهر الشريف
+                        <br> الادارة المركزية للشئون القانونية
+                        <br> &nbsp;&nbsp;&nbsp;أجندة الادارة العامة للقضايا
+                        <br>
+                        <!--                    <span style="text-decoration: underline;">words with under line</span><br />--></div>
+                    <div style="float: left;text-align: left;"><img src="../views/images/logoo.png" style="max-width:46%;" /></div>
+                    <!--                    <div id="logo_top_lef"> <img src="../images/logo.png" style="max-width: 150px;max-height: 146px;float: left;" /> </div>--></div>
+                <div style="clear:both;">
+                    <br/>
+                    <br/> </div>
+                <style>
+                    table tr:first-child {
+                        background: #e3e3e3;
+                        font-weight: bold;
+                    }
+                </style>
+                <div class="main_content">
+                    <table id="issue_table_id" border="1" class="print-table" style="float:right;">
+                        <tr>
+                                <td>المحامي</td>
+                                <td>المنطقه</td>
+                            <td dir="rtl" style="font-family: Noto Naskh Arabic">رقم القضية</td>
+                            <td style="width:15%;"> محكمة</td>
+                            <td>دائرة</td>
+                            <td style="width:12%;">اسم الخصم</td>
+                            <td>صفته</td>
+                            <td style="width:15%;">موضوع الدعوي</td>
+                            <td style="width:10%;">الجلسة السابقة</td>
+                            <td>سبب التاجيل</td>
+                            <td style="width:10%;">القرار</td>
+                            <td>الملاحظات</td>
+                            
+                            
+                        </tr>
+                        <tr ng-repeat="x in data.obj">
+                                <td>{{ x.u_firstname }}</td>
+                                <td>{{ x.area_name }}</td>
+                            <td>{{ x.claim_no }}</td>
+                            <td>{{ x.court }}</td>
+                            <td>{{ x.circle }}</td>
+                            <td>{{ x.Discount_Name }}</td>
+                            <td>{{ x.Discount_Position }}</td>
+                            <td>{{ x.subject }}</td>
+                            <td>{{ x.last_session }}</td>
+                            <td>{{ x.last_session_reason }}</td>
+                            <td>{{ x.next_session }}</td>
+                            <td>{{ x.issue_Notes }}</td>
+                            
+                            
+                        </tr>
+                    </table>
+                    <!--                    <span style="font-weight:bold;font-size:20px;float:left;">بعده ,,,</span>-->
+                    <div class="cleaner"></div>
+                    <br /> </div>
+            </div>
+        </div>
+    </div>
+    <!-- for the arabic numbers conversion -->
+    <script type="text/javascript">
+        var map = ["\u0660", "\u0661", "\u0662", "\u0663", "\u0664", "\u0665", "\u0666", "\u0667", "\u0668", "\u0669"];
+
+        function replaceNumbers(node) {
+            if (node.nodeType == 3) //Text nodes only
+                node.nodeValue = node.nodeValue.replace(/[0-9]/g, getArabicNumber);
+        }
+
+        function getArabicNumber(n) {
+            return map[parseInt(n, 10)];
+        }
+
+        function walk(node, func) {
+            func(node);
+            node = node.firstChild;
+            while (node) {
+                walk(node, func);
+                node = node.nextSibling;
+            }
+        };
+        walk(document.body, replaceNumbers);
+    </script>
+    <div id="controlles" style="position: fixed;bottom: 40px;">
+        <input type="submit" class="btn btn-primary" ng-click="ssprint()" value="طباعة" style="font-size: x-large;">
+        <input type="submit" class="btn btn-primary" ng-click="excel0()" value="تصدير Excel" style="font-size: x-large;">
+        <input type="submit" class="btn btn-primary" ng-click="export2Word()" value="تصدير Word" style="font-size: x-large;"> </div>
+    <canvas width="1349" height="771"></canvas>
+</body>
+
+</html>

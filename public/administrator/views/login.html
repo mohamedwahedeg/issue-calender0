@@ -1,0 +1,61 @@
+<style>
+    div {
+        direction: rtl;
+    }
+    
+    .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #ff9900;
+        border-bottom: 16px solid #ff9900;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+    }
+    
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+<div ng-controller="login">
+    <!-- start work-page -->
+    <!-- max-width: 65%;background-color: #ffffff;padding: 20px;opacity: 0.92;box-shadow:0 0 15px black; -->
+    <center>
+        <section style="">
+            <div class="loader" id="loading" style="display:none;"></div>
+            <div class="title"> تسجيل دخول </div>
+            <form method="post" ng-submit="doLogin(code)">
+                <div class="col-sm-4"> <img src="images/login0.png" style="width: 55%;float: left;" /> </div>
+                <div class="col-sm-8">
+                    <div class="form-group">
+                        <label>الكود</label>
+                        <input type="text" class="form-control" name="code" value="" placeholder="أدخل الكود السري" ng-model="code">
+                        <div class="clear"></div>
+                    </div>
+                    
+                    <br>
+                    <input type="submit" class="btn btn-primary" value="تسجيل دخول" style="font-size: x-large;"> </div>
+            </form>
+            <br>
+            <br>
+            <div id="wrong" class="btn-danger" style="display:none;">
+                <p> من فضلك تأكد من ادخال جميع البيانات</p>
+            </div>
+        </section>
+    </center>
+</div>

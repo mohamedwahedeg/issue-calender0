@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+
+<head>
+    <base href='/'>
+    <title>أجنده قضايا الازهر</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!--    <link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <script type="text/javascript" src="js/1.4.3/angular.min.js"></script>
+    <script type="text/javascript" src="js/1.4.0angular-route.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="app.routes.js"></script>
+    <script type="text/javascript" src="controllers/home.js"></script>
+    <!--    <script type="text/javascript" src="controllers/register.js"></script>-->
+    <script type="text/javascript" src="controllers/calender2.js"></script>
+    <script type="text/javascript" src="controllers/login.js"></script>
+    <script type="text/javascript" src="controllers/logout.js"></script>
+    <script type="text/javascript" src="controllers/calendar.js"></script>
+    <script type="text/javascript" src="controllers/add.js"></script>
+    <script type="text/javascript" src="controllers/issue_details.js"></script>
+    <script type="text/javascript" src="controllers/issue_edit.js"></script>
+    <script type="text/javascript" src="controllers/user.js"></script>
+    <script type="text/javascript" src="controllers/report_today.js"></script>
+    <script type="text/javascript" src="controllers/search_result.js"></script>
+    <script type="text/javascript" src="directives/issuedetails00.js"></script>
+        <script type="text/javascript" src="controllers/reports0.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Services -->
+    <script type="text/javascript" src="services/authService.js"></script>
+    <!-- Controllers -->
+    <!-- <script type="text/javascript" src="controllers/MainController.js"></script> -->
+    <!-- Directives -->
+    <script type="text/javascript" src="directives/reverse.js"></script>
+    <script type="text/javascript" src="directives/issuedetails.js"></script>
+    <script type="text/javascript" src="directives/excelx.js"></script>
+    <script type="text/javascript" src="directives/report_today_data.js"></script>
+    <!-- -->
+    <script src="js/jquery3.2.1jquery.min.js"></script>
+    
+    <link rel="stylesheet" href="views/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.css" crossorigin="anonymous">
+    <script src="views/bootstrap-4.0.0-alpha.6-dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <link href="angular-datepicker-master/src/css/angular-datepicker.css" rel="stylesheet" type="text/css" />
+    <link href="css/tooplate_style.css" rel="stylesheet" type="text/css" />
+    <!-- -->
+    <script type="text/javascript" src="js/FileSaver.js"></script>
+    <script type="text/javascript" src="js/jquery.wordexport.js"></script>
+    <script type="text/javascript" src="js/moment.js"></script>
+    <script type="text/javascript" src="js/ui-bootstrap-tpls-2.5.0.min.js"></script>
+    <script type="text/javascript" src="js/1.4.0angular-animate.js"></script>
+    <!--
+    <link href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
+    <script src="bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
+-->
+    <!-- calender -->
+    <script src="js/moment@2.17.1moment.js"></script>
+    <script src="js/interactjs@1.3.1distinteract.js"></script>
+    <!--    <script src="https://unpkg.com/angular@1.6.4/angular.js"></script>-->
+    <!--    <script src="https://unpkg.com/angular-animate@1.6.4/angular-animate.js"></script>-->
+    <script src="js/angular-ui-bootstrap@2.5.6distui-bootstrap-tpls.js"></script>
+    <script src="js/rrule@2.2.0librrule.js"></script>
+    <script src="js/angular-bootstrap-colorpicker@3.0.31jsbootstrap-colorpicker-module.js"></script>
+    <!--    <script src="https://unpkg.com/angular-bootstrap-calendar"></script>-->
+    <script src="js/angular-bootstrap-calendar-tpls.js"></script>
+    <!--    <link href="js/bootstrap.css" rel="stylesheet">
+    <link href="https://unpkg.com/bootstrap@3/dist/css/bootstrap.css" rel="stylesheet">-->
+    <!--        <link href="https://unpkg.com/angular-bootstrap-colorpicker@3/css/colorpicker.min.css" rel="stylesheet">-->
+    <link href="js/colorpicker.min.css" rel="stylesheet">
+    <link href="js/angular-bootstrap-calendar.min.css" rel="stylesheet">
+    <!--    <link href="https://unpkg.com/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">-->
+    <!--    <script src="example.js"></script>-->
+    <script src="helpers.js"></script>
+    <script src="jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <!-- -->
+</head>
+
+<body>
+    <script src="angular-datepicker-master/src/js/angular-datepicker.js"></script>
+    <center>
+        <div id="tooplate_header" class="clearfix">
+
+                <div class="topbar">
+
+<div class="topbar-btn">&or;</div>
+
+          
+            
+            <!-- <div id="search" class="search" style="float: left;
+    padding: 3px 3px 3px 7px;
+    border: 1px solid;
+    margin-top: 13px;
+    border-radius: 11px;
+    color: grey;">
+                <div class="btn-group" role="group">
+                    <div class="dropdown dropdown-lg">
+                         <form method="post" ng-submit="seach(search)">
+                            <input type="text" style="border:none;background:transparent;outline:none;" placeholder="البحث" ng-model="search" />
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class=""></span></button> <span class="glyphicon glyphicon-search" ng-click="seach(search)"></span>
+                            <div class="dropdown-menu dropdown-menu-right" role="menu">
+                        </form>
+                        <form method="post" ng-submit="custom(lable,search)"> <span class="title">بحث مخصص</span>
+                            <div class="form-group">
+                                <label>بحث بواسطة</label>
+                                <table class="table table-bordered table-striped">
+                                    <tr>
+                                        <td>
+                                            <input type="radio" name="s" ng-model="lable" value="0"> </td>
+                                        <td>رقم القضية </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="radio" name="s" ng-model="lable" value="1"> </td>
+                                        <td> اسم المحكمة </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="radio" name="s" ng-model="lable" value="2"> </td>
+                                        <td>اسم الدائرة</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="radio" name="s" ng-model="lable" value="3"> </td>
+                                        <td> اسم الخصم </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="form-group">
+                                <label for="contain">بحث</label>
+                                <input class="form-control" type="text" ng-model="search" /> </div>
+                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                        </form> 
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            
+
+   
+
+</div>
+
+            <div id="logo"> <img id="logo" src="../images/web/mainlogo.png">
+                <!--                <h1><a href="/">أجندة قضايا الأزهر</a></h1> </div>--></div>
+            <a href="/" style="float: RIGHT;"> <img src="../images/web/logoTitle.png" /> </a>
+            <!-- end of forever header -->
+    </center>
+    <br>
+    <br>
+    <main class="container main-wrapper" ng-controller="home">
+        <!-- <div ng-view></div> -->
+
+        <div ng-controller="home">
+
+            <div class="loaderbg" id="loading" style="display:none;">
+                <div class="loader" style="position:fixed;left:45%;top:45%;" ></div>
+            </div>
+        
+                <div class="title"> لوحة التحكم </div>
+        
+                <br>
+                <input type="submit" ng-click="addmohamy()" class="btn btn-primary" value="اضافة محامي" style="font-size: x-large;"> </form>
+        
+                <br>
+        
+    <div id="popadd" style="display: none;
+            position: fixed;
+            background-color: #9e9e9e;
+            z-index: 99;
+            height: 250px;
+            width: 40%;
+            top: 30%;
+            right: 35%;">
+                    <center>
+                        <table class="table">
+                            <p class="closebtn" style="margin: 5px;" ng-click="closeit1()"> X </p>
+                            <p class="title"> اضافة محامي </p>
+                            <br> 
+                           <form method="post" ng-submit="add(user,pass,areainsert,fn,ln,phone)">
+                                <!-- -->
+                                <div class="form-group">
+                                    <label>  اسم المستخدم</label>
+                                <input id="1" type="text" class="form-control" name="issue_Notes" value="" placeholder="اسم المستخدم " ng-model="user">
+                                <div class="clear"></div>
+                                </div>
+                                <!-- -->
+                                <br>
+                                <!-- -->
+                                <div class="form-group">
+                                    <label> كلمة المرور</label>
+                                <input id="2" type="text" class="form-control" name="issue_Notes" value="" placeholder=" كلمة المرور " ng-model="pass">
+                                <div class="clear"></div>
+                                 </div>
+                                <!-- -->
+                                <br>
+                                <!-- -->
+                                <div class="form-group">
+                                    <label> المنطقة</label>
+                                    <br>
+                                <select ng-model="areainsert" style="width: 200px;" >
+                                    <option value="2">مركزي</option>
+                                    <option value="1">الدقهلية</option>
+                                    <option value="3">الغربية</option>
+                                    <option value="4">دمياط</option>
+                                    <option value="5">بورسعيد</option>
+                                    <option value="6">الجيزة</option>
+                                    <option value="7">بني سويف</option>
+                                    <option value="8">السويس</option>
+                                    <option value="9">الاسكندرية</option>
+                                    <option value="10">سوهاج</option>
+                                    <option value="11">شمال سيناء"</option>
+                                    <option value="12">البحيرة</option>
+                                    <option value="13">جنوب سيناء</option>
+                                    <option value="14">الشرقية</option>
+                                    <option value="15">اسوان</option>
+                                    <option value="16">مرسى مطروح</option>
+                                    <option value="17">الوادي الجديد</option>
+                                    <option value="18">المنيا</option>
+                                    <option value="19">الاسماعيلية</option>
+                                    <option value="20">القليوبية</option>
+                                    <option value="21">قنا</option>
+                                    <option value="22">كفر الشيخ"</option>
+                                    <option value="23">البحر الاحمر</option>
+                                    <option value="24">الاقصر</option>
+                                    <option value="25">المنوفية</option>
+                                    <option value="26">الفيوم</option>
+                                </select>
+                                <div class="clear"></div>
+                                </div>
+                                <!-- -->
+                                <br>
+                                <!-- -->
+                                <div class="form-group">
+                                    <label> اسم المحامي الاول</label>
+                                  <input id="4" type="text" class="form-control" name="issue_Notes" value="" placeholder=" الاسم الاول" ng-model="fn">
+                                 <div class="clear"></div>
+                                </div>
+                                <!-- -->
+                                <br>
+                                <!-- -->
+                                <div class="form-group">
+                                    <label> اسم المحامي الاخير</label>
+                                 <input id="5" type="text" class="form-control" name="issue_Notes" value="" placeholder="الاسم الاخير" ng-model="ln">
+                                  <div class="clear"></div>
+                                    </div>
+                                <!-- -->
+                                <br>
+                                <!-- -->
+                                <div class="form-group">
+                                    <label> رقم الهاتف</label>
+                                <input id="6" type="text" class="form-control" name="issue_Notes" value="" placeholder="رقم الهاتف" ng-model="phone">
+                                <div class="clear"></div>
+                                </div>
+                                <!-- -->
+                                <br>
+                                <input type="submit" class="btn btn-primary" value="اضافة المحامي" style="font-size: x-large;"> </form>
+        
+                                <p id="uadded" style="display:none;">  تم اضافة المستخدم بنجاح </p>
+                                <p id="loading-add" style="display:none;"><img src="./images/8d88ece3551fb441841221d48556b13c9f96d43c_hq.gif" /></p>
+                        </table>
+                    </center>
+                </div>
+        </div>
+
+
+        <script>
+            var app = angular.module('MyApp', []);
+            app.controller('home', function($rootScope, $location, Auth, $window, $scope, $http) {
+               
+        $scope.addmohamy = function(){
+            $("#popadd").show();
+        }
+        //
+        $scope.add = function(user,pass,areainsert,fn,ln,phone){
+            var val = {
+                'user': user
+                , 'pass': pass
+                , 'areainsert': areainsert
+                , 'fn': fn
+                , 'ln': ln
+                , 'phone': phone
+
+            };
+            //
+            $("#uadded").hide();
+            $("#loading-add").show();
+            $http.post('/api/adduser', val).
+                    success(function (data, status, headers, config) {
+                        $("#loading-add").hide();
+                        $("#uadded").show();
+                    }).error(function (data, status, headers, config) {
+                        console.log(data);
+                        $("#uadded").hide();
+                        $("#loading-add").hide();
+                        $("#popadd").hide();
+                        alert("خطا في السيرفر او الانترنت حاول لاحقاً");
+                    });
+                    //
+            
+        }   // end add
+        //
+        $scope.closeit1 = function(){
+            $("#uadded").hide();
+            $("#loading-add").hide();
+            $("#popadd").hide();
+        }
+        //
+
+
+    
+
+
+            });
+            </script>
+
+
+    </main>
+    <style>
+        .footer {
+            position: fixed;
+            width: 100%;
+            height: 35px;
+            line-height: 30px;
+            background-color: #000000;
+            bottom: 0;
+            z-index: 99
+        }
+    </style>
+    <br>
+    <br>
+    <br>
+    <footer class="footer">
+        <div class="container">
+            <center><span class="" style="color: #fff;">جـميـع الحقوق محفوظة لصالح مؤسسة الأزهر الشـريف</span></center>
+        </div>
+    </footer>
+</body>
+
+</html>
